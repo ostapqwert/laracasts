@@ -32,4 +32,13 @@ class Application {
 }
 
 $app = new Application();
-$app->setLogger(new TerminalLogger())->action();
+$app->setLogger(
+    new class implements Logger {
+
+        public function log($message)
+        {
+            var_dump($message);
+        }
+
+    }
+)->action();

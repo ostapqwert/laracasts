@@ -10,18 +10,16 @@ class BankAccounts {
     }
 
 
-    public function filteBy($accountType){
+    public function filteBy($accountType)
+    {
 
         return array_filter($this->accounts, function($account) use ($accountType){
-           return $this->isOfType($accountType, $account);
+           return $account->isOfType($accountType);
         });
 
     }
 
-    private function isOfType($accountType, $account): bool
-    {
-        return $account->type() == $accountType && $account->isActive();
-    }
+
 
 }
 
@@ -38,14 +36,19 @@ class Account {
         return new static($type);
     }
 
-    public function isActive()
+    private function isActive()
     {
         return true;
     }
 
-    public function type()
+    private function type()
     {
         return $this->type;
+    }
+
+    public function isOfType($accountType): bool
+    {
+        return $this->type() == $accountType && $this->isActive();
     }
 
 }

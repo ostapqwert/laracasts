@@ -11,18 +11,16 @@ class BankAccounts {
 
 
     public function filteBy($accountType){
-        $filtered = [];
 
-        foreach ($this->accounts as $account){
-            if($account->type() == $accountType){
-                if($account->isActive()){
-                    $filtered[] = $account;
-                }
-            }
-        }
+        return array_filter($this->accounts, function($account) use ($accountType){
+           return $this->isOfType($accountType, $account);
+        });
 
-        return $filtered;
+    }
 
+    private function isOfType($accountType, $account): bool
+    {
+        return $account->type() == $accountType && $account->isActive();
     }
 
 }

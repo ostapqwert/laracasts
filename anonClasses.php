@@ -32,6 +32,7 @@ class Application {
 }
 
 $app = new Application();
+
 $app->setLogger(
     new class implements Logger {
 

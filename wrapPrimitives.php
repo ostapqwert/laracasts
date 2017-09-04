@@ -20,7 +20,51 @@ class Weight {
 
 }
 
-$c = new Weight(100);
-$ss = $c->gain(22);
+class WorkoutPlaceMember {
 
-var_dump($ss);
+    protected $name;
+
+    public function __construct($name, Weight $weight)
+    {
+        $this->name = $name;
+    }
+
+    public function workoutFor(TimeLength $length)
+    {
+        return $this->name." Проработал ". $length->inHours();
+    }
+}
+
+class TimeLength {
+
+    protected $seconds;
+
+    private function __construct($seconds)
+    {
+        $this->seconds = $seconds;
+    }
+
+    public static function fromMinutes($minutes)
+    {
+        return new static($minutes * 60);
+    }
+
+    public static function fromHours($hourse)
+    {
+        return new static($hourse * 60 * 60);
+    }
+
+    public function inSeconds()
+    {
+        return $this->seconds;
+    }
+    public function inHours()
+    {
+        return $this->seconds / 60 / 60;
+    }
+}
+
+
+
+$john = new WorkoutPlaceMember('John', new Weight(160));
+echo $john->workoutFor(TimeLength::fromHours(3));

@@ -1,7 +1,11 @@
 <?php
 
+interface ResponsesUserRegistration {
+    public function userRegistredSuccefull();
+    public function userRegistredFailed();
+}
 
-class AuthController {
+class AuthController implements ResponsesUserRegistration {
 
     protected $registration;
 
@@ -11,7 +15,7 @@ class AuthController {
     }
 
     public function register(){
-        $this->registration->execute([], $this);
+        $this->registration->execute(['name'=>'oleg', 'email'=>'ad@google.com'], $this);
     }
 
     public function userRegistredSuccefull()
@@ -30,9 +34,9 @@ class AuthController {
 
 class RegisterUser {
 
-    public function execute(array $data, $listener){
+    public function execute(array $data, ResponsesUserRegistration $listener){
 
-        var_dump("REgistering user......");
+        var_dump($data,"Registering user......");
 
         $listener->userRegistredSuccefull();
     }

@@ -24,6 +24,7 @@ class BankAccounts {
 }
 
 class Account {
+
     protected $type;
 
     public function __construct($type)

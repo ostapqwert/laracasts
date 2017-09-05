@@ -7,14 +7,8 @@ use \Symfony\Component\Console\Input\InputInterface;
 use \Symfony\Component\Console\Output\OutputInterface;
 use \Symfony\Component\Console\Input\InputArgument;
 
-$app = new Application();
+$app = new Application('Doing Laracasts together', '1.0');
 
-$app->register('sayHello')
-    ->setDescription('Say hello to sombody')
-    ->addArgument('name', InputArgument::OPTIONAL, 'Your name')
-    ->setCode(function(InputInterface $input, OutputInterface $output){
-        $name = $input->getArgument('name');
-        $output->writeln('hello dear '. $name);
-});
+$app->add(new \Acme\SayHelloCommand());
 
 $app->run();

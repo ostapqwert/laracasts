@@ -12,4 +12,11 @@ class MovieCollectionSpec extends ObjectBehavior
     {
         $this->shouldHaveType(MovieCollection::class);
     }
+
+    function it_store_a_collection_of_movie(MovieCollection\Movie $movie)
+    {
+        $this->add($movie);
+
+        $this->shouldHaveCount(1);
+    }
 }

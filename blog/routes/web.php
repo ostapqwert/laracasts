@@ -11,14 +11,11 @@
 |
 */
 
+
+
 Route::get('/', function () {
 
-    $tasks = [
-        'Go to the store',
-        'Finish my screen casts',
-        'Clean the house'
-    ];
-
+    $tasks = DB::table('tasks')->get();
     return view('welcome', compact('tasks'));
 
 });

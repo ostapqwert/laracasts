@@ -15,4 +15,16 @@ class PostsController extends Controller
     {
         return view('show.index');
     }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store(Request $request)
+    {
+
+        dd($request);
+
+    }
 }

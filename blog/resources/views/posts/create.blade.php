@@ -2,9 +2,22 @@
 
 @section('content')
     <div class="col-sm-8 blog-main">
-     <h1>Create the post</h1>
 
+     <h1>Create the post</h1>
         <hr>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
+
 
         <form action="{{ route('posts.store') }}" method="POST">
             {{ csrf_field() }}
@@ -20,7 +33,7 @@
             <div class="form-group">
                 <label for="title">Post:</label>
 
-                <textarea name="post" id="" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="body" id="" cols="30" rows="10" class="form-control"></textarea>
 
             </div>
             <button type="submit" class="btn btn-primary">Save post</button>

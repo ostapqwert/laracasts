@@ -34,6 +34,8 @@
             <div class="card">
                 <div class="card-block">
 
+                    @include('layouts.errors')
+
                     <form action="/posts/{{ $post->id }}/comments" method="POST">
 
                         {{ csrf_field() }}

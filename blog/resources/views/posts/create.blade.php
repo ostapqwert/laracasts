@@ -6,20 +6,10 @@
      <h1>Create the post</h1>
         <hr>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-
-
+        @include('layouts.errors')
 
         <form action="{{ route('posts.store') }}" method="POST">
+
             {{ csrf_field() }}
 
             <div class="form-group">

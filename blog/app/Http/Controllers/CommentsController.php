@@ -11,7 +11,7 @@ class CommentsController extends Controller
     public function store(Post $post)
     {
 
-        $this->validate(\request(), ['body'=>'min:3']);
+        $this->validate(\request(), ['body'=>'require|min:3']);
 
         $post->addComment(request('body'));
 

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -25,18 +28,27 @@ class PostsController extends Controller
         return view('posts.create');
     }
 
+
+
+//    use Illuminate\Contracts\Auth\Authenticatable;
+//    public function store(NewPost $post, Authenticatable $user = null)
+//    {
+//        $user->publish($post);
+//
+//        return redirect('/');
+//
+//    }
+
+
     public function store()
     {
 
-        $this->validate(\request(),[
+        $this->validate(request(),[
             'title' => 'required|min:5|max:150',
             'body' => 'required|min:5'
         ]);
 
-        Post::create([
-            'title' => request('title'),
-            'body' => request('body')
-        ]);
+        Auth::user()->publish(new Post(request(['title', 'body'])));
 
         return redirect('/');
 

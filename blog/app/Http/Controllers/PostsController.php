@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBlogPost;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -12,14 +13,13 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->filter(request()->all(['month', 'year']))->get();
 
         return view('posts.index', compact('posts'));
     }
 
     public function show(Post $post)
     {
-
         return view('posts.show', compact('post'));
     }
 
@@ -27,6 +27,8 @@ class PostsController extends Controller
     {
         return view('posts.create');
     }
+
+
 
 
 
@@ -43,10 +45,12 @@ class PostsController extends Controller
     public function store()
     {
 
+
         $this->validate(request(),[
             'title' => 'required|min:5|max:150',
             'body' => 'required|min:5'
         ]);
+
 
         Auth::user()->publish(new Post(request(['title', 'body'])));
 

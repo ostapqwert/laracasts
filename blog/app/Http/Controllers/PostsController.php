@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBlogPost;
 use App\Post;
+use App\Repositories\PostsRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -11,9 +12,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
-    public function index()
+
+    public function __construct()
     {
-        $posts = Post::latest()->filter(request()->all(['month', 'year']))->get();
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
+    public function index(PostsRepository $posts)
+    {
+        $posts = $posts->all();
 
         return view('posts.index', compact('posts'));
     }

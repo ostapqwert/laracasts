@@ -21,6 +21,7 @@ class PostsController extends Controller
     public function index(PostsRepository $posts)
     {
         $posts = $posts->all();
+        //$posts = Post::latest()->filter(request()->all(['month', 'year']))->get();
 
         return view('posts.index', compact('posts'));
     }

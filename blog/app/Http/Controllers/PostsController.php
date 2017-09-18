@@ -59,8 +59,9 @@ class PostsController extends Controller
             'body' => 'required|min:5'
         ]);
 
-
         Auth::user()->publish(new Post(request(['title', 'body'])));
+
+        session()->flash('message', 'The post successful added');
 
         return redirect('/');
 

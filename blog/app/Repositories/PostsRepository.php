@@ -10,7 +10,8 @@ class PostsRepository
 
     public function all()
     {
-        return Post::all();
+        //return Post::all();
+        return Post::latest()->filter(request()->all(['month', 'year']))->get();
     }
 
 }

@@ -50,14 +50,8 @@ class PostsController extends Controller
 //    }
 
 
-    public function store()
+    public function store(StoreBlogPost $post)
     {
-
-
-        $this->validate(request(),[
-            'title' => 'required|min:5|max:150',
-            'body' => 'required|min:5'
-        ]);
 
         Auth::user()->publish(new Post(request(['title', 'body'])));
 

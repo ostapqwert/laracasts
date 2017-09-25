@@ -25,3 +25,7 @@ Route::get('/login', 'SessionsController@create');
 Route::post('/login', 'SessionsController@store');
 Route::get('/logout', 'SessionsController@destroy');
 
+
+Route::get('/purchases', 'PurchasesController@store');
+Route::get('/users', 'UsersController@store');
+

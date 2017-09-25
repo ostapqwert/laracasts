@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\UserRegistered;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -42,5 +43,14 @@ class User extends Authenticatable
 //            'body' => request('body'),
 //            'user_id' => auth()->id()
 //        ]);
+    }
+
+    public static function register($attributes)
+    {
+        $user = static::create($attributes);
+
+        event(new UserRegistered($user)); // https://laracasts.com/series/whip-monstrous-code-into-shape/episodes/3?autoplay=true
+
+        return $user;
     }
 }

@@ -1,0 +1,14 @@
+{
+    "name": "alexander/less_dont_ask",
+    "authors": [
+        {
+            "name": "alexander dev",
+            "email": "alex@gmail.com"
+        }
+    ],
+    "require": {},
+
+  "autoload": {
+    "psr-4": {"Acme\\": "src/"}
+  }
+}

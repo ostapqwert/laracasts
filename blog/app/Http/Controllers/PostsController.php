@@ -53,6 +53,8 @@ class PostsController extends Controller
     public function store(StoreBlogPost $post)
     {
 
+
+        dd(request());
         Auth::user()->publish(new Post(request(['title', 'body'])));
 
         session()->flash('message', 'The post successful added');

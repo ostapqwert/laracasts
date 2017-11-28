@@ -29,3 +29,4 @@ Route::get('/logout', 'SessionsController@destroy');
 Route::get('/purchases', 'PurchasesController@store');
 Route::get('/users', 'UsersController@store');
 
+Route::get('/test', 'TestController@test');
